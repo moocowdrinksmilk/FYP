@@ -44,7 +44,7 @@ const Listing = () => {
                             // @ts-ignore
                             publicKey={item.mintAddress}
                             // @ts-ignore
-                            creatorKey={item.creators[0].address}
+                            creatorKey={item.address}
                             listing={true}
                         />
                     )
