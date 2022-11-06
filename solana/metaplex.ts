@@ -1,7 +1,7 @@
 import { Metadata, Metaplex } from "@metaplex-foundation/js";
 import { Connection, PublicKey } from "@solana/web3.js";
 
-const conn = new Connection("https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS")
+const conn = new Connection("https://magical-light-sheet.solana-mainnet.quiknode.pro/96f2fb37a3247ee895fd0d36694966e86f6448d9/")
 
 const metaplex = new Metaplex(conn)
 

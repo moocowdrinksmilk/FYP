@@ -26,7 +26,7 @@ const Ticket = () => {
             publicKey: wallet.publicKey?.toBase58(),
             signature: signature
         })
-        const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS")
+        const connection = new Connection("https://magical-light-sheet.solana-mainnet.quiknode.pro/96f2fb37a3247ee895fd0d36694966e86f6448d9/")
         const txn = Transaction.from(bs58.decode(res.data.transaction[0]))
 
         const {

@@ -29,7 +29,7 @@ const WalletWrapper = (props: props) => {
     )
 
     return (
-        <ConnectionProvider endpoint={"https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS"}>
+        <ConnectionProvider endpoint={"https://magical-light-sheet.solana-mainnet.quiknode.pro/96f2fb37a3247ee895fd0d36694966e86f6448d9/"}>
             <WalletProvider wallets={wallets}>
 
                 {props.children}

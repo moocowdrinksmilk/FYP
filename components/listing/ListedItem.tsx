@@ -51,7 +51,7 @@ const ListedItem = (props: props) => {
         if (!wallet.publicKey || !wallet.signTransaction) {
             throw WalletNotConnectedError
         }
-        const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS")
+        const connection = new Connection("https://magical-light-sheet.solana-mainnet.quiknode.pro/96f2fb37a3247ee895fd0d36694966e86f6448d9/")
 
         const res = await axios.post<{ transaction: string[] }>(`/api/marketplace/buy`, {
             mintAddress: props.publicKey,
@@ -84,7 +84,7 @@ const ListedItem = (props: props) => {
         if (!wallet.publicKey || !wallet.signTransaction) {
             throw WalletNotConnectedError
         }
-        const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS")
+        const connection = new Connection("https://magical-light-sheet.solana-mainnet.quiknode.pro/96f2fb37a3247ee895fd0d36694966e86f6448d9/")
 
         const res = await axios.post<{ transaction: string[] }>(`/api/marketplace/list`, {
             mintAddress: props.publicKey,
