@@ -37,8 +37,6 @@ const ListedItem = (props: props) => {
             }
             try {
                 const res = await axios.get<NftData>(props.uri)
-                console.log(res.data.image);
-
                 setImage(res.data.image)
             } catch (e) {
                 console.log(e.message);
@@ -59,7 +57,7 @@ const ListedItem = (props: props) => {
             mintAddress: props.publicKey,
             publicKey: wallet.publicKey
         })
-        let encoder = new TextEncoder()
+        
         const txn = Transaction.from(bs58.decode(res.data.transaction[0]))
         const {
             context: { slot: minContextSlot },
@@ -67,10 +65,18 @@ const ListedItem = (props: props) => {
         } = await connection.getLatestBlockhashAndContext()
 
         txn.recentBlockhash = blockhash
+        txn.lastValidBlockHeight = lastValidBlockHeight
+
 
         let signedtx = await wallet.signTransaction(txn)
+        try {
+            // const signature = connection.sendRawTransaction(signedtx.serialize())
+            const signature = await wallet.sendTransaction(signedtx, connection, { minContextSlot, preflightCommitment: 'confirmed' })
 
-        const signature = connection.sendRawTransaction(signedtx.serialize())
+        } catch (e) {
+            console.log(e);
+            
+        }
         // const signature = await wallet.sendTransaction(signedtx, connection, { minContextSlot, preflightCommitment: 'processed' })
     }
 
