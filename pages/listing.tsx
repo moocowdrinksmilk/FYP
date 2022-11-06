@@ -41,7 +41,9 @@ const Listing = () => {
                             uri={item.uri}
                             name={item.name}
                             price={2}
+                            // @ts-ignore
                             publicKey={item.mintAddress}
+                            // @ts-ignore
                             creatorKey={item.creators[0].address}
                             listing={true}
                         />

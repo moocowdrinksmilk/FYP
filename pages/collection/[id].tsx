@@ -36,6 +36,7 @@ const Collection = () => {
                     collection && collection.length > 0 ?
                         collection.map((collection) => {
                             return (
+                                // @ts-ignore
                                 <ListedItem
                                     uri={collection.metadata.uri}
                                     name={collection.metadata.name}
