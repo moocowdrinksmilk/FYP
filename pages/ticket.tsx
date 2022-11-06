@@ -22,7 +22,7 @@ const Ticket = () => {
         const signature = bs58.encode(signatureu8)
 
         const res = await axios.post<{ transaction: string[] }>(`/api/marketplace/minting/mint`, {
-            collectionAddr: "311MVQ967Yku9Bq9jSdbdYpzykCDqDyRnK8Hoh6be9y5",
+            collectionAddr: "975HGMGX1Y4m6JAMNJAr5nJGeRwhN8dN29WN4pXVF7Yp",
             publicKey: wallet.publicKey?.toBase58(),
             signature: signature
         })
