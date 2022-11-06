@@ -29,7 +29,7 @@ const WalletWrapper = (props: props) => {
     )
 
     return (
-        <ConnectionProvider endpoint={clusterApiUrl('devnet')}>
+        <ConnectionProvider endpoint={"https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS"}>
             <WalletProvider wallets={wallets}>
 
                 {props.children}

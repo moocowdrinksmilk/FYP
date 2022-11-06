@@ -26,7 +26,7 @@ const Ticket = () => {
             publicKey: wallet.publicKey?.toBase58(),
             signature: signature
         })
-        const connection = new Connection(clusterApiUrl('mainnet-beta'))
+        const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS")
         const txn = Transaction.from(bs58.decode(res.data.transaction[0]))
 
         const {

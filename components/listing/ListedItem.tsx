@@ -51,13 +51,13 @@ const ListedItem = (props: props) => {
         if (!wallet.publicKey || !wallet.signTransaction) {
             throw WalletNotConnectedError
         }
-        const connection = new Connection(clusterApiUrl('mainnet-beta'))
+        const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS")
 
         const res = await axios.post<{ transaction: string[] }>(`/api/marketplace/buy`, {
             mintAddress: props.publicKey,
             publicKey: wallet.publicKey
         })
-        
+
         const txn = Transaction.from(bs58.decode(res.data.transaction[0]))
         const {
             context: { slot: minContextSlot },
@@ -84,7 +84,7 @@ const ListedItem = (props: props) => {
         if (!wallet.publicKey || !wallet.signTransaction) {
             throw WalletNotConnectedError
         }
-        const connection = new Connection(clusterApiUrl('mainnet-beta'))
+        const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/ogX-h080ThMql5r1743yysjMm111hRDS")
 
         const res = await axios.post<{ transaction: string[] }>(`/api/marketplace/list`, {
             mintAddress: props.publicKey,

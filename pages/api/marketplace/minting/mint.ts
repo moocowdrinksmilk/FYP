@@ -27,7 +27,7 @@ const handler = async (req: Req, res: NextApiResponse) => {
         res.status(200).send(nonce.data)
     } catch(e) {
         console.log(e);
-        
+        res.status(400).send({message: e.message})
     }
 
 }
