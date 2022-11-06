@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model listed {
+  id           String   @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  mintAddress  String   @db.VarChar
+  price        Float
+  collectionId String   @db.VarChar
+  publicKey    String   @db.VarChar
+  sold         Boolean  @default(false)
+  buyer        String?  @db.VarChar
+  createdAt    DateTime @default(now()) @db.Timestamp(6)
+  updatedAt    DateTime @default(now()) @db.Timestamp(6)
+
+  @@id([id, sold], map: "PK_8fc519906ab0cde4f984441ed10")
+}
+
+model migrations {
+  id        Int    @id(map: "PK_8c82d7f526340ab734260ea46be") @default(autoincrement())
+  timestamp BigInt
+  name      String @db.VarChar
+}
+
+model nft_collection {
+  mint_address           String      @id @db.VarChar
+  collection_name        String?     @db.VarChar
+  collection_symbol      String?     @db.VarChar
+  collection_image       String?     @db.VarChar
+  collection_description String?     @db.VarChar
+  collection_royalties   Int?
+  whitelist              whitelist[]
+}
+
+model whitelist {
+  collection_addr String         @db.VarChar
+  pubkey          String         @db.VarChar
+  quantity        Int?
+  nft_collection  nft_collection @relation(fields: [collection_addr], references: [mint_address], onDelete: NoAction, onUpdate: NoAction, map: "collection_addr_fk")
+
+  @@id([collection_addr, pubkey], map: "whitelist_pk")
+}
