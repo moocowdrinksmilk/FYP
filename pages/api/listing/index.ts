@@ -26,7 +26,7 @@ const handler = async (req: Req, res: NextApiResponse) => {
 
         let keys: PublicKey[] = []
         for (let listing of listings) {
-            keys.push(new PublicKey(listing.publicKey))
+            keys.push(new PublicKey(listing.mintAddress))
         }
         let metadatas = await MetaplexRpc.getNftsFromMints(keys, 0)
         
@@ -35,12 +35,15 @@ const handler = async (req: Req, res: NextApiResponse) => {
             if (meta)
             metadataObj[meta.mintAddress.toBase58()] = meta
         }
+        console.log(metadatas);
+        
+        
         let resListing:ListingRes[] = []
         for (let i = 0; i< listings.length; i++) {
-            if (listings[i].publicKey in metadataObj) {
+            if (listings[i].mintAddress in metadataObj) {
                 resListing.push({
                     ...listings[i],
-                    metadata: metadataObj[listings[i].publicKey]
+                    metadata: metadataObj[listings[i].mintAddress]
                 })
             } else {
                 resListing.push({
@@ -53,7 +56,7 @@ const handler = async (req: Req, res: NextApiResponse) => {
         }
 
 
-        res.status(200).send(resListing)
+        res.status(200).send(resListing.filter(item => !item.sold))
     } else {
         res.status(405).send({message: "This method is not allowed"})
     }
