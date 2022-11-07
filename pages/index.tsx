@@ -40,8 +40,13 @@ const Home: NextPage = () => {
   }, [wallet.connected, wallet.publicKey])
   return (
     <div className="h-screen flex flex-row items-center justify-center bg-gray-900">
-      <div className="text-5xl text-purple-400">
-        Err... Hello CS302
+      <div className="flex flex-col gap-2">
+        <div className="text-purple-300 text-xl">
+          Presented By
+        </div>
+        <div className="text-5xl text-purple-400">
+          Dee Perdadi
+        </div>
       </div>
     </div>
   )
