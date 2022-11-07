@@ -30,26 +30,28 @@ const Listing = () => {
                 </div>
             </WalletModalProvider>
 
-            {
-                nfts &&
-                nfts.map((item, index) => {
-                    if (!item.creators || item.creators.length < 1) {
-                        return
-                    }
-                    return (
-                        <ListedItem 
-                            uri={item.uri}
-                            name={item.name}
-                            price={2}
-                            // @ts-ignore
-                            publicKey={item.mintAddress}
-                            // @ts-ignore
-                            creatorKey={item.address}
-                            listing={true}
-                        />
-                    )
-                })
-            }
+            <div className="flex flex-wrap gap-4">
+                {
+                    nfts &&
+                    nfts.map((item, index) => {
+                        if (!item.creators || item.creators.length < 1) {
+                            return
+                        }
+                        return (
+                            <ListedItem
+                                uri={item.uri}
+                                name={item.name}
+                                price={2}
+                                // @ts-ignore
+                                publicKey={item.mintAddress}
+                                // @ts-ignore
+                                creatorKey={item.address}
+                                listing={true}
+                            />
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }
