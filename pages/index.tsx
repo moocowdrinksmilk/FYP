@@ -39,13 +39,9 @@ const Home: NextPage = () => {
     purchaseListing()
   }, [wallet.connected, wallet.publicKey])
   return (
-    <div className="h-full bg-green-100">
-      <div className="w-1/2">
-        <WalletModalProvider>
-          <div className="bg-purple-800 hover:bg-black rounded-md flex">
-            <WalletMultiButton className="w-full" />
-          </div>
-        </WalletModalProvider>
+    <div className="h-screen flex flex-row items-center justify-center bg-gray-900">
+      <div className="text-5xl text-purple-400">
+        Err... Hello CS302
       </div>
     </div>
   )
