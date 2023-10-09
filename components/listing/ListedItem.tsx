@@ -30,6 +30,8 @@ const ListedItem = (props: props) => {
     const [image, setImage] = useState("")
     const [modal, setModal] = useState(false)
 
+    
+
     useMemo(() => {
         const getMetaData = async (tries: number) => {
             if (tries > 1) {
