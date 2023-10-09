@@ -1,6 +1,6 @@
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { ConnectionProvider, useAnchorWallet, WalletProvider } from "@solana/wallet-adapter-react"
-import { GlowWalletAdapter, LedgerWalletAdapter, PhantomWalletAdapter, SlopeWalletAdapter, SolflareWalletAdapter, TorusWalletAdapter } from "@solana/wallet-adapter-wallets"
+import { LedgerWalletAdapter, PhantomWalletAdapter, SolflareWalletAdapter, TorusWalletAdapter } from "@solana/wallet-adapter-wallets"
 import { clusterApiUrl, Connection } from "@solana/web3.js"
 import React, { useMemo } from "react"
 
@@ -17,11 +17,9 @@ const WalletWrapper = (props: props) => {
     const wallets = useMemo(
         () => [
             new PhantomWalletAdapter(),
-            new SlopeWalletAdapter(),
             new SolflareWalletAdapter({ network }),
             new TorusWalletAdapter(),
             new LedgerWalletAdapter(),
-            new GlowWalletAdapter(),
             // new SolletWalletAdapter({ network }),
             // new SolletExtensionWalletAdapter({ network }),
         ],

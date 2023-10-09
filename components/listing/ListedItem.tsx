@@ -38,7 +38,7 @@ const ListedItem = (props: props) => {
             try {
                 const res = await axios.get<NftData>(props.uri)
                 setImage(res.data.image)
-            } catch (e) {
+            } catch (e: any) {
                 console.log(e.message);
                 getMetaData(tries + 1)
             }

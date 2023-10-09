@@ -82,6 +82,20 @@ const SolanaUtil = {
     }
   },
 
+  async freeze(nftClient: NftClient, mint: PublicKey) {
+    const approved = await nftClient.approveUseAuthority({
+      mintAddress: mint,
+      user: new PublicKey(process.env.ESCROW_SECRET_KEY as string),
+    })
+    console.log(approved);
+    const freeze = await nftClient.freezeDelegatedNft({
+      mintAddress: mint,
+      delegateAuthority: this.getEscrowSigner(),
+    })
+    
+    console.log(freeze);
+  },
+
   async uploadMetadataForCollection(nftClient: NftClient, event: CreateCollectionEvent) {
     // removed metadata below to pass linting
     const {uri} = await nftClient.uploadMetadata({

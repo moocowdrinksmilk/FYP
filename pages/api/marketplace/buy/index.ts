@@ -21,7 +21,7 @@ const handler = async (req: Req, res: NextApiResponse) => {
         })
         res.status(200).send(buy.data)
 
-    } catch(e) {
+    } catch(e: any) {
         console.log(e.message);
         res.status(400).send("Bad Request")
     }
