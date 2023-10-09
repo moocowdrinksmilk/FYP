@@ -45,3 +45,25 @@ model whitelist {
 
   @@id([collection_addr, pubkey], map: "whitelist_pk")
 }
+
+model Event {
+  id          String   @id(map: "event_pk")
+  name        String
+  date        DateTime @default(now()) @db.Timestamp(6)
+  venue       String
+  description String
+  image       String
+  ticket      Ticket[]
+
+  @@map("event")
+}
+
+model Ticket {
+  id      String @id(map: "ticket_pk")
+  mint    String
+  number  Int
+  eventId String @map("event_id")
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ticket_event_id_fk")
+
+  @@map("ticket")
+}

@@ -14,39 +14,39 @@ const Ticket = () => {
         if (!wallet.signMessage || !wallet.signTransaction) {
             return
         }
-        const nonce = await axios.get<{ nonce: string }>(`/api/marketplace/minting/nonce/?pubkey=${wallet.publicKey?.toBase58()}`)
-        let n = nonce.data.nonce
+        // const nonce = await axios.get<{ nonce: string }>(`/api/marketplace/minting/nonce/?pubkey=${wallet.publicKey?.toBase58()}`)
+        // let n = nonce.data.nonce
 
-        const encoder = new TextEncoder()
-        const signatureu8 = await wallet.signMessage(encoder.encode(n))
-        const signature = bs58.encode(signatureu8)
+        // const encoder = new TextEncoder()
+        // const signatureu8 = await wallet.signMessage(encoder.encode(n))
+        // const signature = bs58.encode(signatureu8)
 
-        const res = await axios.post<{ transaction: string[] }>(`/api/marketplace/minting/mint`, {
-            collectionAddr: "975HGMGX1Y4m6JAMNJAr5nJGeRwhN8dN29WN4pXVF7Yp",
-            publicKey: wallet.publicKey?.toBase58(),
-            signature: signature
-        })
-        const connection = new Connection("https://magical-light-sheet.solana-mainnet.quiknode.pro/96f2fb37a3247ee895fd0d36694966e86f6448d9/")
-        const txn = Transaction.from(bs58.decode(res.data.transaction[0]))
+        // const res = await axios.post<{ transaction: string[] }>(`/api/marketplace/minting/mint`, {
+        //     collectionAddr: "975HGMGX1Y4m6JAMNJAr5nJGeRwhN8dN29WN4pXVF7Yp",
+        //     publicKey: wallet.publicKey?.toBase58(),
+        //     signature: signature
+        // })
+        // const connection = new Connection("https://magical-light-sheet.solana-mainnet.quiknode.pro/96f2fb37a3247ee895fd0d36694966e86f6448d9/")
+        // const txn = Transaction.from(bs58.decode(res.data.transaction[0]))
 
-        const {
-            context: { slot: minContextSlot },
-            value: { blockhash, lastValidBlockHeight }
-        } = await connection.getLatestBlockhashAndContext()
+        // const {
+        //     context: { slot: minContextSlot },
+        //     value: { blockhash, lastValidBlockHeight }
+        // } = await connection.getLatestBlockhashAndContext()
 
-        txn.recentBlockhash = blockhash
-        txn.lastValidBlockHeight = lastValidBlockHeight
+        // txn.recentBlockhash = blockhash
+        // txn.lastValidBlockHeight = lastValidBlockHeight
 
 
-        let signedtx = await wallet.signTransaction(txn)
-        try {
-            // const signature = connection.sendRawTransaction(signedtx.serialize())
-            const signature = await wallet.sendTransaction(signedtx, connection, { minContextSlot, preflightCommitment: 'confirmed' })
+        // let signedtx = await wallet.signTransaction(txn)
+        // try {
+        //     // const signature = connection.sendRawTransaction(signedtx.serialize())
+        //     const signature = await wallet.sendTransaction(signedtx, connection, { minContextSlot, preflightCommitment: 'confirmed' })
 
-        } catch (e) {
-            console.log(e);
+        // } catch (e) {
+        //     console.log(e);
             
-        }
+        // }
 
     }
 

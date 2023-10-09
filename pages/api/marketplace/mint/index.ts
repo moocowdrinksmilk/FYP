@@ -19,9 +19,7 @@ type MintRequest = {
     }
 }
 const handler = async (req: MintRequest, res: NextApiResponse) => {
-    const baseUrl = "marketplace-alb-prod-2113570642.ap-southeast-1.elb.amazonaws.com"
-    const resp = await axios.post(`${baseUrl}/mint`, req.body)
-    res.status(200).send({ transaction: resp.data.transaction })
+    
 }
 
 export default handler
