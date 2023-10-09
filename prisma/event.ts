@@ -15,6 +15,23 @@ const createEvent = async (data: Event) => {
     }
 }
 
+const getEventById = async (id: string) => {
+    const db = new PrismaClient()
+    try {
+        const event = await db.event.findUniqueOrThrow({
+            where: {
+                id
+            }
+        })
+
+        return event
+    }
+    catch(e) {
+        throw e
+    }
+}
+
 export const EventRepository = {
-    createEvent
+    createEvent,
+    getEventById
 }

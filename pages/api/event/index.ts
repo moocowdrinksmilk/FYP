@@ -9,6 +9,7 @@ interface Req {
         venue: string,
         description: string,
         image: string,
+        maxSeats: number,
     }
 }
 
@@ -20,7 +21,8 @@ const handler = async (req: Req, res: NextApiResponse) => {
             date: req.body.date,
             venue: req.body.venue,
             description: req.body.description,
-            image: req.body.image
+            image: req.body.image,
+            maxSeats: req.body.maxSeats,
         })
 
         return res.status(200).send(event)

@@ -1,6 +1,7 @@
 import { NextApiResponse } from "next"
 import SolanaUtil, { CreateCollectionEvent } from "../../../../../utils/solana"
 import { v4 } from "uuid"
+import { EventRepository } from "../../../../../prisma/event"
 
 interface Req {
     body: {
@@ -11,14 +12,16 @@ interface Req {
         venue: string,
         date: string,
         organiserShare: number,
-        organiserAddress: string
+        organiserAddress: string,
+        eventId: string,
+        seat: string,
     }
 }
 
 const handler = async (req: Req, res: NextApiResponse) => {
     try {
-        const eventId = v4()
-        const event: CreateCollectionEvent = {
+        const event = await EventRepository.getEventById(req.body.eventId)
+        const nftTicket: CreateCollectionEvent = {
             collectionDetails: {
                 collectionName: req.body.name,
                 collectionSymbol: req.body.symbol,
@@ -36,7 +39,11 @@ const handler = async (req: Req, res: NextApiResponse) => {
                     },
                     {
                         trait_type: "id",
-                        value: eventId
+                        value: event.id
+                    },
+                    {
+                        trait_type: "seat",
+                        value: req.body.seat
                     }
                 ],
                 creators: [
@@ -53,7 +60,7 @@ const handler = async (req: Req, res: NextApiResponse) => {
                 ]
             }
         }
-        const collection = await SolanaUtil.createCollection(event)
+        const collection = await SolanaUtil.createCollection(nftTicket)
 
         return res.status(200).send(collection)
     }

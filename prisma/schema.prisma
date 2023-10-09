@@ -53,6 +53,7 @@ model Event {
   venue       String
   description String
   image       String
+  maxSeats    Int      @default(0) @map("max_seats")
   ticket      Ticket[]
 
   @@map("event")
