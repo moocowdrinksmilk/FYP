@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "next --openssl-legacy-provider build",
+    "build": "next build",
     "start": "next start -p 3001",
     "lint": "next lint"
   },
