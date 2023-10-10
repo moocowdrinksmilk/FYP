@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { Event } from '@prisma/client'
 import { DateTime } from "luxon"
+import BuyModal from "../../components/buy/BuyModal"
 
 const Page = () => {
     const router = useRouter()
@@ -120,11 +121,9 @@ const Page = () => {
                         </div>
                     </div>
 
-                    <button
-                        className="bg-green-500 hover:bg-green-600 duration-200 rounded-md text-white px-4 py-2"
-                    >
-                        Buy Ticket
-                    </button>
+                    <BuyModal
+                        id={id as string}
+                    />
                 </div>
             </div>
         </div>
