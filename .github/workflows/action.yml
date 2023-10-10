@@ -1,4 +1,7 @@
 name: my-workflow
+
+on: [push]
+
 jobs:
   my-job:
     name: my-job
