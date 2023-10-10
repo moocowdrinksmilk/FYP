@@ -2,6 +2,7 @@ import { NextApiResponse } from "next"
 import SolanaUtil, { CreateCollectionEvent } from "../../../../../utils/solana"
 import { v4 } from "uuid"
 import { EventRepository } from "../../../../../prisma/event"
+import { PublicKey } from "@solana/web3.js"
 
 interface Req {
     body: {
@@ -61,6 +62,11 @@ const handler = async (req: Req, res: NextApiResponse) => {
             }
         }
         const collection = await SolanaUtil.createCollection(nftTicket)
+
+        const mint = collection.mint.address
+        const tokenAccount = collection.token.address
+        const freezeAuthority = collection.mint.freezeAuthorityAddress
+        await SolanaUtil.freeze(tokenAccount, mint, freezeAuthority as PublicKey)
 
         return res.status(200).send(collection)
     }
