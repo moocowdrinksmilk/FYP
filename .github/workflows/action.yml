@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   my-job:
-    name: my-job
+    name: FYP-Unit-Test-Bun
     runs-on: ubuntu-latest
     steps:
       # ...
