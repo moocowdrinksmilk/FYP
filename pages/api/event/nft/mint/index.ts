@@ -10,6 +10,8 @@ interface Req {
     }
 }
 
+export const maxDuration = 300;
+
 const handler = async (req: Req, res: NextApiResponse) => {
     try {
         const event = await EventRepository.getEventById(req.body.eventId)
