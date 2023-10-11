@@ -21,6 +21,7 @@ const checkWalletWhitelisted = async (publicKey: string) => {
 }
 
 export const WhitelistRepository = {
+    
     getWhitelists,
     checkWalletWhitelisted
 }
