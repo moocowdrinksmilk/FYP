@@ -18,6 +18,8 @@ const handler = async (req: Req, res: NextApiResponse) => {
     switch(method) {
         case "GET":
             try {
+                console.log(req.query.id, req.query.address);
+                
                 const whitelist = await EventWhitelistRepository.isWhiteListed(req.query.id, req.query.address)
                 return res.status(200).send(whitelist)
             } catch(e: any) {

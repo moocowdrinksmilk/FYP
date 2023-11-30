@@ -331,7 +331,24 @@ const SolanaUtil = {
                 timeout: 60000,
             }));
 
-        return metaplex.nfts()
+        return metaplex.nfts();
+    },
+
+    getCandyMachineClient() {
+        const connection = this.getConnection();
+        const escrowSecretKey = process.env.ESCROW_SECRET_KEY as string
+        const escrowSigner = Keypair.fromSecretKey(decode(escrowSecretKey))
+        const escrowAddress = escrowSigner.publicKey
+
+        const metaplex = Metaplex.make(connection)
+            .use(keypairIdentity(escrowSigner))
+            .use(bundlrStorage({
+                address: 'https://devnet.bundlr.network',
+                providerUrl: 'https://api.devnet.solana.com',
+                timeout: 60000,
+            }));
+
+        return metaplex.candyMachinesV2();
     },
 
     getEscrowSigner(): Keypair {
