@@ -47,15 +47,17 @@ model whitelist {
 }
 
 model Event {
-  id              String            @id(map: "event_pk")
-  name            String
-  date            DateTime          @default(now()) @db.Timestamp(6)
-  venue           String
-  description     String
-  image           String
-  maxSeats        Int               @map("max_seats")
-  event_whitelist EventWhitelist[]
-  ticket          Ticket[]
+  id               String           @id(map: "event_pk")
+  name             String
+  date             DateTime         @default(now()) @db.Timestamp(6)
+  venue            String
+  description      String
+  image            String
+  maxSeats         Int              @map("max_seats")
+  candymachineMint String?          @map("candymachine_mint")
+  collectionMint   String?          @map("collection_mint")
+  event_whitelist  EventWhitelist[]
+  ticket           Ticket[]
 
   @@map("event")
 }
